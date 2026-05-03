@@ -11,10 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN adduser --disabled-password ctfuser
+EXPOSE 8080
 
-USER ctfuser
-
-EXPOSE 5000
-
-CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PORT:-5000} app:app"]
+CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:$PORT app:app"]
